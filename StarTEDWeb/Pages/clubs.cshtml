@@ -1,0 +1,21 @@
+﻿@page
+@model StarTEDWeb.Pages.ClubsModel
+@{
+    ViewData["Title"] = "Update Club Status";
+}
+<p>@Model.FeedbackMessage</p>
+
+<h1>Edit @Model.CategoryList</h1>  
+
+<form asp-action="Edit" method="post"> 
+   <div> 
+      @*<label asp-for = ""></label> 
+      <input asp-for = "" /> 
+      <span asp-validation-for = ""></span> *@
+   </div> 
+   
+   <div> 
+      <input type = "submit" value = "Save" /> 
+   </div> 
+</form>
+}

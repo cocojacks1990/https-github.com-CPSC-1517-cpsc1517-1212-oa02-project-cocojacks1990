@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to CPSC1517 StarTED</h1>
+    <h2> Project Section: A02</h2>
+    <br />
+    <h3>Deliverable Descriptions</h3>
+    <p>Query: Display the results of looking up Clubs by their active status (active/non-active). The employee drop-down has only employees active with clubs. Follow the mock-up below as a guide to displaying the results. Remember to include pagination.
+    Each club line will contain a link to allow for record maintenance. This link will cause your CRUD page to appear. Add a separate New button to have your CRUD appear.</p>
+    <p>CRUD: Single Item Create/Read/Update/Deactivate (Delete) <br />
+        Note the following: <br />
+    Club entries are not deleted. Rather than providing a "delete" button, inlude a "Deactivate" button and in the BLL method, change the Active flag to false and update the database for that entry.
+    For entering the employee id of available staff, use an "input with a "datalist. The datalist is based the results of a query returning only employees who are instructors, office administrator or technical support.</p>
+</div>
+

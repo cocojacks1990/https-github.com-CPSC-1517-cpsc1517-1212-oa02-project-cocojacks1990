@@ -1,0 +1,86 @@
+﻿@page "{selectedRadioButton?}"
+@model StarTEDWeb.Pages.EmployeesModel
+@{
+    ViewData["Title"] = "Employee List";
+}
+<h1>Clubs By Status</h1>
+
+<p>@Model.FeedbackMessage</p>
+
+<form method="post">
+    <p>Select Club Status:</p>
+  <input type="radio" asp-for="@Model.selectedRadioButton" value="true" />Active
+  <input type="radio" asp-for="@Model.selectedRadioButton" value="false" />In-Active<br/>
+  
+  <button type="submit" asp-page-handler="List">Search</button>
+
+@if(Model.CategoryList.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Staff</th>
+                <th>Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.CategoryList)
+            {
+                <tr>
+                    <td>
+                        <a asp-page="/Clubs">Edit</a> 
+                    </td>
+                    <td>@item.ClubID</td>
+                    <td>@item.ClubName</td>
+                    <td>
+                        <select>
+                            @foreach(var currentEmployee in @Model.EmployeeIDList)
+                                    {
+                                    if (item.EmployeeID != null)
+                                    {
+                                        <option value="@currentEmployee.EmployeeID"
+                                            selected=@(currentEmployee.EmployeeID == item.EmployeeID)>
+                                            @currentEmployee.FullName
+                                        </option>
+                                    }
+                                    
+                                    }
+                                <option>No Staff Member</option>
+                        </select>
+                    </td>
+                    <td>@item.Fee.ToString("0.00")</td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            @{
+                                foreach(var pageRef in Model.Pager)
+                                {
+                                    if (pageRef == Model.Pager.CurrentPage)
+                                    {
+                                        <b>@pageRef.Text</b>
+                                    }
+                                    else
+                                    {                       
+                                        <a title="Page @pageRef.Page"
+                                           asp-page="/Employees"
+                                           asp-route-currentpage="@pageRef.Page"
+                                           asp-route-ProductNameSearchValue="@Model.selectedRadioButton">
+                                            @pageRef.Text   
+                                         </a>
+                                    }
+                                }
+                            }
+                        </td>
+                    </tr>
+                </tfoot>
+
+    </table>    
+}
+
+</form>
